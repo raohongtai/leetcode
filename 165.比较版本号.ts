@@ -6,55 +6,51 @@
 
 // @lc code=start
 // function compareVersion(version1: string, version2: string): number {
-//   const v1 = version1.split('.')
-//   const v2 = version2.split('.')
-//   let p1 = 0,
-//     p2 = 0
-//   const length1 = v1.length
-//   const length2 = v2.length
-//   while (p1 < length1 || p2 < length2) {
-//     if (p1 >= length1) {
-//       if (parseInt(v2[p2]) !== 0) {
+//   const version1Arr = version1.split('.')
+//   const version2Arr = version2.split('.')
+//   let v1 = 0
+//   let v2 = 0
+//   const v1Length = version1Arr.length
+//   const v2Length = version2Arr.length
+//   while (v1 < v1Length || v2 < v2Length) {
+//     if (v1 >= v1Length) {
+//       if (parseInt(version2Arr[v2]) !== 0) {
 //         return -1
 //       }
-//     }
-//     if (p2 >= length2) {
-//       if (parseInt(v1[p1]) !== 0) {
+//     } else if (v2 >= v2Length) {
+//       if (parseInt(version1Arr[v1]) !== 0) {
 //         return 1
 //       }
-//     }
-//     if (parseInt(v1[p1]) > parseInt(v2[p2])) {
+//     } else if (parseInt(version1Arr[v1]) > parseInt(version2Arr[v2])) {
 //       return 1
-//     }
-//     if (parseInt(v1[p1]) < parseInt(v2[p2])) {
+//     } else if (parseInt(version1Arr[v1]) < parseInt(version2Arr[v2])) {
 //       return -1
 //     }
-//     p1++
-//     p2++
+//     v1++
+//     v2++
 //   }
 //   return 0
 // }
+
 function compareVersion(version1: string, version2: string): number {
-  let p1 = 0,
-    p2 = 0
-  const length1 = version1.length
-  const length2 = version2.length
+  let v1 = 0
+  let v2 = 0
+  const v1Length = version1.length
+  const v2Length = version2.length
   const zeroPosition = '0'.charCodeAt(0)
-  while (p1 < length1 || p2 < length2) {
-    let x = 0
-    for (; p1 < length1 && version1[p1] !== '.'; p1++) {
-      x = x * 10 + version1[p1].charCodeAt(0) - zeroPosition
+  while (v1 < v1Length || v2 < v2Length) {
+    let v1Sum = 0
+    let v2Sum = 0
+    for (; v1 < v1Length && version1[v1] !== '.'; v1++) {
+      v1Sum = v1Sum * 10 + version1[v1].charCodeAt(0) - zeroPosition
     }
-    p1++
-
-    let y = 0
-    for (; p2 < length2 && version2[p2] !== '.'; p2++) {
-      y = y * 10 + version2[p2].charCodeAt(0) - zeroPosition
+    v1++
+    for (; v2 < v2Length && version2[v2] !== '.'; v2++) {
+      v2Sum = v2Sum * 10 + version2[v2].charCodeAt(0) - zeroPosition
     }
-    p2++
-
-    if (x !== y) {
-      return x > y ? 1 : -1
+    v2++
+    if (v1Sum !== v2Sum) {
+      return v1Sum > v2Sum ? 1 : -1
     }
   }
   return 0
