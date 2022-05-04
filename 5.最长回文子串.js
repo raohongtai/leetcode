@@ -21,9 +21,9 @@ function longestPalindrome(s) {
   let start = 0
   let max = 0
 
-  for (let gap = 2; gap <= s.length; gap++) {
+  for (let gap = 1; gap <= s.length; gap++) {
     for (let i = 0; i < s.length; i++) {
-      const j = i + gap - 1
+      const j = i + gap
       if (j >= s.length) {
         break
       }
@@ -32,7 +32,7 @@ function longestPalindrome(s) {
         if (j - i < 3) {
           dp[i][j] = true
         } else {
-          // 否则应该判断字串
+          // 否则应该判断子串
           dp[i][j] = dp[i + 1][j - 1]
         }
       } else {
