@@ -25,4 +25,4 @@ function rob(nums: number[]): number {
   return second
 }
 // @lc code=end
-console.log(rob([2, 1, 1, 2]))
+console.log(rob([2, 1, 1]))
